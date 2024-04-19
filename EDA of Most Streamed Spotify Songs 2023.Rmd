@@ -8,7 +8,9 @@ output:
 ---
 # Data Analysis on the most streamed songs on spotify as of 2023
 
-We will be getting our hands dirty with a ton of data from the "[Most Streamed Spotify Songs 2023](https://www.kaggle.com/datasets/nelgiriyewithana/top-spotify-songs-2023/data)" data set I retrieved from the Kaggle website. We are especially going to focus on the energy quality in the music, which is described by the publisher as the perceived energy level of the song. The following are going to be answered and explored in our analysis:
+We will be getting our hands dirty with a ton of data from the "[Most Streamed Spotify Songs 2023](https://www.kaggle.com/datasets/nelgiriyewithana/top-spotify-songs-
+2023/data)" data set I retrieved from the Kaggle website. We are especially going to focus on the energy quality in the music, which is described by the publisher as the 
+perceived energy level of the song. The following are going to be answered and explored in our analysis:
 
 * In which months did the most streamed songs as of 2023 release? Any possible reason why? 
 
@@ -104,7 +106,11 @@ annotate("text", x = 6.5, y = 125, label = "2nd peak in May", size = 3) +
 ylab("Songs Released") + xlab("Month")
 ```
 
-Conclusion: January is the 1st month of the new year, a time where many music festivals are active, usually carried over by the holidays, as well as an opportunity for artist to release new music for the new year. This music could have been promoted and gathered hype from the previous year(s) so much that it presents the highest peak in this graph. Next we have the month of May with the 2nd most song releases. This shows me that artists are likely releasing their music just before summer as there are also many festivals during the summer. Not to mention a larger demographic will be available to listen to more music because of a summer break.
+Conclusion: January is the 1st month of the new year, a time where many music festivals are active, usually carried over by the holidays, 
+as well as an opportunity for artist to release new music for the new year. This music could have been promoted and gathered hype from the 
+previous year(s) so much that it presents the highest peak in this graph. Next we have the month of May with the 2nd most song releases. 
+This shows me that artists are likely releasing their music just before summer as there are also many festivals during the summer. 
+Not to mention a larger demographic will be available to listen to more music because of a summer break.
 
 ## Does a higher energy level in the song make it more popular ? (i.e. have more streams)?
 Notes: First I need to take a look at each column for its' data type.
@@ -170,10 +176,13 @@ scale_y_continuous(labels = scales::comma, name = "number of streams") +
 scale_x_discrete(name = "energy percentile")
 ```
 
-Conclusion: It is clear from this plot that songs with energy levels between 50 - 75% have the most streams. Specifically, the sum of the streams at this level reach 258.3 Billion. This is a stark contrast to songs with energy levels between 0 and 25%, which only add up to 5.8 Billion streams. There seems to be a trend where the less energy level means less streams, as the 2nd largest amount of streams falls between 76 - 100%, which is then followed by 26 - 50% and finally 0 - 25%.  
+Conclusion: It is clear from this plot that songs with energy levels between 50 - 75% have the most streams. Specifically, the sum of the streams at this level reach 258.3
+Billion. This is a stark contrast to songs with energy levels between 0 and 25%, which only add up to 5.8 Billion streams. There seems to be a trend where the less energy 
+level means less streams, as the 2nd largest amount of streams falls between 76 - 100%, which is then followed by 26 - 50% and finally 0 - 25%.  
 
 ## Any trends in the energy level of songs for the last 10 years?
-Notes: Here we will be taking a look at the energy levels in the most streamed spotify songs of 2023 by their release date for a 10 year span (2013 - 2023). Time to create a new data frame with data of only these years.
+Notes: Here we will be taking a look at the energy levels in the most streamed spotify songs of 2023 by their release date for a 10 year span (2013 - 2023). 
+Time to create a new data frame with data of only these years.
 ```{r}
 songs_2013_to_2023 <- top_songs_2023 %>% filter(released_year %in% c(2013:2023))
 ```
@@ -192,7 +201,9 @@ scale_y_continuous(name = "energy%") +
 labs(title = "Energy of songs released per year for 10 years",subtitle = "From the Most Streamed Songs on Spotify 2023")
 ```
 
-Conclusion: My observations conclude that roughly a 50 - 75% energy level in songs keep the people listening, even from songs released up to 10 years ago. We can see this from the boxes(which account for 50% of all the data points per year) falling within the 50 - 75% range, only ever minimally spilling over or under. The median, represented as the horizontal line in the boxes, also all fit between 50 - 75% with just one exception in the year 2018.
+Conclusion: My observations conclude that roughly a 50 - 75% energy level in songs keep the people listening, even from songs released up to 10 years ago. We can see this
+from the boxes(which account for 50% of all the data points per year) falling within the 50 - 75% range, only ever minimally spilling over or under. The median, represented
+as the horizontal line in the boxes, also all fit between 50 - 75% with just one exception in the year 2018.
 
 ## Do songs released in the Summer have higher energy levels than those released in the Winter?
 Notes: Our next objective is to find out if songs released during the Summer months have more energy levels than those in the Winter. Let's plot these variables. 
@@ -225,10 +236,18 @@ Notes: Take a look at the average energy level for winter.
 ```{r}
 winter_release_songs %>% summarise(mean(energy))
 ```
-Conclusion: I have observed that more songs with a low energy level are streamed during Winter, whereas Summer contains songs that are more kept within the higher energy levels, with not as much range aside from the outliers in the month of July. However, this is simply an observation of the range. The averages of the two seasons' energy levels are pretty much the same. Summers' being 65.8 and Winters' 64.7. The median and the boxes can also be seen falling roughly between 50 and 75% energy, further enforcing the previous questions of this analysis. Summer is just barely higher, but still the # is insignificant and I can conclude that these seasons of the year do not change the energy level of the songs listened to, only that Winter allows for a greater range towards lower energy level. 
+Conclusion: I have observed that more songs with a low energy level are streamed during Winter, whereas Summer contains songs that are more kept within the higher energy 
+levels, with not as much range aside from the outliers in the month of July. However, this is simply an observation of the range. The averages of the two seasons' energy 
+levels are pretty much the same. Summers' being 65.8 and Winters' 64.7. The median and the boxes can also be seen falling roughly between 50 and 75% energy, further 
+enforcing the previous questions of this analysis. Summer is just barely higher, but still the # is insignificant and I can conclude that these seasons of the year do not 
+change the energy level of the songs listened to, only that Winter allows for a greater range towards lower energy level. 
 
 ## Conclusion
-First, most songs from the most streamed spotify songs of 2023 are released in January, a great way for artists to start the new year. This is followed closely by the month of May which is the perfect way to begin the summer. Next, there is a sweet spot of 51 - 75% energy level in songs that will sum the streams to be the highest number. To further back the answer to this hypothesis, we find that having a 50 - 75% energy level in a song will keep people listening to it, even if those songs were released 10 years prior to 2023. Finally, the energy levels are barely higher in songs released during the summer than in the winter, so I accept that there is no significant difference. However, a final observation is that both of the seasons' months have an average energy level between 50 - 75 %.    
+First, most songs from the most streamed spotify songs of 2023 are released in January, a great way for artists to start the new year. This is followed closely by the month
+of May which is the perfect way to begin the summer. Next, there is a sweet spot of 51 - 75% energy level in songs that will sum the streams to be the highest number. To 
+further back the answer to this hypothesis, we find that having a 50 - 75% energy level in a song will keep people listening to it, even if those songs were released 10 
+years prior to 2023. Finally, the energy levels are barely higher in songs released during the summer than in the winter, so I accept that there is no significant 
+difference. However, a final observation is that both of the seasons' months have an average energy level between 50 - 75 %.    
 
 
 
