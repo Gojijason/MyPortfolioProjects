@@ -1,4 +1,4 @@
-## Data Cleaning 
+# Data Cleaning 
 
 SELECT * FROM us_household_income;
 
@@ -21,19 +21,19 @@ HAVING COUNT(*) > 1 ;
 
 DELETE FROM us_household_income
 WHERE row_id IN (
-				SELECT row_id
-				FROM ( 
-					SELECT row_id
-					,id
-					,ROW_NUMBER() OVER(PARTITION BY id ORDER BY id) row_num
-					FROM us_household_income 
-					 ) duplicates
-				WHERE row_num > 1 ) ;
+		SELECT row_id
+		FROM ( 
+			SELECT row_id
+			,id
+			,ROW_NUMBER() OVER(PARTITION BY id ORDER BY id) row_num
+			FROM us_household_income 
+			 ) duplicates
+		WHERE row_num > 1 ) ;
                 
 SELECT * FROM us_household_income;
 
-## Focusing on us_household_income table
-## Check state_name column 
+# Focusing on us_household_income table
+# Check state_name column 
 
 SELECT DISTINCT state_name, state_code
 FROM us_household_income
@@ -53,25 +53,25 @@ WHERE State_Name = 'alabama' ;
 
 SELECT * FROM us_household_income;
 
-## Check State_ab column 
+# Check State_ab column 
 
 SELECT DISTINCT State_ab
 FROM us_household_income
 ORDER BY State_ab ;
 
-## Check for missing values in County column 
+# Check for missing values in County column 
 
 SELECT *
 FROM us_household_income
 WHERE County IS NULL OR ' ' ;
 
-## Check for missing values in City column 
+# Check for missing values in City column 
 
 SELECT *
 FROM us_household_income
 WHERE City IS NULL OR ' ' ;
 
-## Check for missing values in Place column
+# Check for missing values in Place column
 
 SELECT *
 FROM us_household_income
@@ -88,7 +88,7 @@ UPDATE us_household_income
 SET Place = 'Autaugaville'
 WHERE COUNTY = 'Autauga County' AND City = 'Vinemont' ;
 
-## Check Type column 
+# Check Type column 
 
 SELECT DISTINCT Type, COUNT(Type)
 FROM us_household_income 
@@ -101,7 +101,7 @@ UPDATE us_household_income
 SET Type = 'Borough'
 WHERE Type = 'Boroughs' ;
 
-## Check Primary column
+# Check Primary column
 
 SELECT DISTINCT `Primary`
 FROM us_household_income ;
@@ -112,7 +112,7 @@ UPDATE us_household_income
 SET `Primary` = 'Place'
 WHERE `Primary` = 'place' ;
 
-## Check ALand and AWater columns for missing values
+# Check ALand and AWater columns for missing values
 
 SELECT ALand, AWater 
 FROM us_household_income
@@ -127,8 +127,8 @@ WHERE ALand IN (NULL)
 SELECT *
 FROM us_household_income ;
 
-## Check us_household_income_statistics
-## Check Mean and Median columns for missing values 
+# Check us_household_income_statistics
+# Check Mean and Median columns for missing values 
 
 SELECT Mean, COUNT(Mean)
 FROM us_household_income_statistics
@@ -149,11 +149,11 @@ WHERE Median = 0 AND Mean = 0 ;
 SELECT *
 FROM us_household_income_statistics ;
 
-## Cleaning Complete 
+# Cleaning Complete 
 
 -- --------------------------------------------------------------------------------------------------
 
-## Us Household Income Exploratory Data Analysis
+# Us Household Income Exploratory Data Analysis
 
 SELECT *
 FROM us_household_income ;
@@ -161,7 +161,7 @@ FROM us_household_income ;
 SELECT *
 FROM us_household_income_statistics ;
 
-## Explore land Area and Water Area per state
+# Explore land Area and Water Area per state
 
 -- The Top 10 States with the largest Land Area.
 
@@ -179,7 +179,7 @@ GROUP BY State_Name
 ORDER BY SUM(AWater) DESC
 LIMIT 10 ;
 
-## Income exploration
+# Income exploration
 
 -- TOP 10 states with the highest average mean household income.
 
@@ -222,7 +222,7 @@ GROUP BY u.State_Name
 ORDER BY median_income 
 LIMIT 10 ; 
 
-## Exploring Type 
+# Exploring Type 
 
 -- Average mean household income per type of residency
 -- Outliers in results, need to filter where type is at least counted more than 100 times in the table.
@@ -245,7 +245,7 @@ GROUP BY Type
 HAVING COUNT(Type) > 100
 ORDER BY median_income DESC ;
 
-## Exploring City 
+# Exploring City 
 
 -- Top 10 cities with the highest average mean household income
 
