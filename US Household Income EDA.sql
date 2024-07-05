@@ -1,3 +1,12 @@
+/* 
+
+This project was completed using MySQL and shows the process of data cleaning to data exploring. This data was gathered from the Census.gov website and specifically includes
+information on household income from 2022.
+Let's Begin :)
+
+*/
+
+
 # Data Cleaning 
 
 SELECT * FROM us_household_income;
